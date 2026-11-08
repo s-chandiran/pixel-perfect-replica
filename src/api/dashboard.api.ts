@@ -15,6 +15,6 @@ async function fetchDashboard(signal?: AbortSignal): Promise<DashboardData> {
 export const dashboardQuery = () =>
   queryOptions({
     queryKey: ["dashboard"],
-    queryFn: ({ signal: signal ?? null }) => fetchDashboard(signal),
+    queryFn: ({ signal }) => fetchDashboard(signal),
     staleTime: 30_000,
   });
