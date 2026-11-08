@@ -1,8 +1,11 @@
 import {
   LayoutDashboard, CalendarRange, BedDouble, Users, DoorOpen, CreditCard, FileText, BarChart3, Settings,
+  type LucideIcon,
 } from "lucide-react";
 
-export const navGroups = [
+type NavItem = { to: "/" | "/bookings" | "/rooms" | "/guests" | "/front-desk" | "/payments" | "/invoices" | "/reports" | "/settings"; label: string; icon: LucideIcon };
+
+export const navGroups: { label: string; items: NavItem[] }[] = [
   {
     label: "Operations",
     items: [
@@ -22,6 +25,6 @@ export const navGroups = [
     ],
   },
   { label: "System", items: [{ to: "/settings", label: "Settings", icon: Settings }] },
-] as const;
+];
 
 export const allNavItems = navGroups.flatMap((g) => g.items);
