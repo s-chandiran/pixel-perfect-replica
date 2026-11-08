@@ -4,10 +4,10 @@
  * - Cookie sessions: credentials are always included; no tokens in browser storage.
  * - Failures are thrown as ApiError, never converted into success.
  */
-export const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? "";
+export const API_BASE_URL = (import.meta.env["VITE_API_BASE_URL"] as string | undefined) ?? "";
 
 /** Sample data is used until VITE_USE_MOCK is set to "false" and real API contracts are wired. */
-export const USE_MOCK = (import.meta.env.VITE_USE_MOCK as string | undefined) !== "false";
+export const USE_MOCK = (import.meta.env["VITE_USE_MOCK"] as string | undefined) !== "false";
 
 export class ApiError extends Error {
   constructor(
@@ -22,7 +22,7 @@ export class ApiError extends Error {
 
 export async function apiRequest<T>(
   path: string,
-  init: RequestInit & { signal?: AbortSignal } = {},
+  init: RequestInit = {},
 ): Promise<T> {
   const res = await fetch(`${API_BASE_URL}${path}`, {
     ...init,

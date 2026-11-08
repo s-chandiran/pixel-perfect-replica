@@ -7,8 +7,8 @@ const rooms: RoomTile[] = [1, 2, 3, 4].flatMap((floor) =>
   Array.from({ length: 10 }, (_, i) => ({
     number: `${floor}${String(i + 1).padStart(2, "0")}`,
     floor,
-    type: types[(i + floor) % 3],
-    status: pattern[(i + floor * 3) % pattern.length],
+    type: types[(i + floor) % 3] ?? "Standard",
+    status: pattern[(i + floor * 3) % pattern.length] ?? "available",
   })),
 );
 const count = (s: RoomStatus) => rooms.filter((r) => r.status === s).length;

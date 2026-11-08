@@ -9,12 +9,12 @@ async function fetchDashboard(signal?: AbortSignal): Promise<DashboardData> {
     await new Promise((r) => setTimeout(r, 300));
     return dashboardMock;
   }
-  return apiRequest<DashboardData>(endpoints.dashboard, { signal });
+  return apiRequest<DashboardData>(endpoints.dashboard, { signal: signal ?? null });
 }
 
 export const dashboardQuery = () =>
   queryOptions({
     queryKey: ["dashboard"],
-    queryFn: ({ signal }) => fetchDashboard(signal),
+    queryFn: ({ signal: signal ?? null }) => fetchDashboard(signal),
     staleTime: 30_000,
   });
