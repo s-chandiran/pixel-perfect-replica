@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- All backend calls go through src/api/client.ts (cookie credentials, VITE_API_BASE_URL); sample data lives only in src/api/mock and is toggled by VITE_USE_MOCK — the real Express backend is the source of truth and must not be replaced.
